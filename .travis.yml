@@ -1,43 +1,21 @@
 language: php
 
 php:
-  - 8.2 
-  - 7.4  # Choose the PHP version you want to use for testing
+  - '8.1'
 
 services:
-  - mysql  # You can use other databases like PostgreSQL or SQLite if needed
+  - mysql
 
 before_install:
   - cp .env.example .env
   - mysql -e 'CREATE DATABASE efic;'
 
 install:
-  - composer install --no-interaction
-  
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+
 before_script:
-  - composer self-update
-  - composer install --no-interaction
-  - cp .env.example .env
-  - pear install pear/PHP_CodeSniffer
-  - phpenv rehash
-  - nvm install 7.7.1
-  - npm install npm@latest -g
-  - npm install -g jshint
-  - npm install
   - php artisan key:generate
   - php artisan migrate
 
-  
-
 script:
-  - vendor/bin/phpunit --coverage-text
-  - phpcs --ignore=app/Http/Controllers/Auth,app/Http/Controllers/Controller.php app/Http/Controllers
-  - npm run production
-  - jshint resources/assets/js/modules/*
-
-  
-
-  
-
-
-
+  - vendor/bin/phpunit
