@@ -1,7 +1,8 @@
 language: php
 
 php:
-  - 8.2  # Choose the PHP version you want to use for testing
+  - 8.2 
+  - 7.4  # Choose the PHP version you want to use for testing
 
 services:
   - mysql  # You can use other databases like PostgreSQL or SQLite if needed
