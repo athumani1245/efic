@@ -7,7 +7,7 @@ services:
   - mysql  # You can use other databases like PostgreSQL or SQLite if needed
 
 before_install:
-  - cp .env .env
+  - cp .env.example .env
   - mysql -e 'CREATE DATABASE efic;'
 
 install:
