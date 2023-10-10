@@ -1,1 +1,22 @@
+language: php
+
+php:
+  - 8.*  # Choose the PHP version you want to use for testing
+
+services:
+  - mysql  # You can use other databases like PostgreSQL or SQLite if needed
+
+before_install:
+  - cp .env.travis .env
+  - mysql -e 'CREATE DATABASE laravel_test;'
+
+install:
+  - composer install --no-interaction
+
+before_script:
+  - php artisan key:generate
+  - php artisan migrate
+
+script:
+  - vendor/bin/phpunit  # Run PHPUnit tests
 
