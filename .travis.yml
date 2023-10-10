@@ -7,8 +7,8 @@ services:
   - mysql  # You can use other databases like PostgreSQL or SQLite if needed
 
 before_install:
-  - cp .env.travis .env
-  - mysql -e 'CREATE DATABASE laravel_test;'
+  - cp .env .env
+  - mysql -e 'CREATE DATABASE efic;'
 
 install:
   - composer install --no-interaction
